@@ -56,7 +56,7 @@ jobs:
 
   publish_release:
     runs-on: macos-latest
-      needs: run_tests
+    needs: run_tests
     steps:
       - uses: actions/checkout@v3
 
