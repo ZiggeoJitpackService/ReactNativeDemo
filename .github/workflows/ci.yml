@@ -67,7 +67,7 @@ jobs:
         id: android_keystore
         uses: timheuer/base64-to-file@v1.0.3
         with:
-          fileName: z_release_keystore.jks
+          fileName: android/app/z_release_keystore.jks
           encodedString: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
 
       - name: Create key.properties
