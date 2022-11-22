@@ -177,9 +177,9 @@ android {
         release {
             manifestPlaceholders = [crashlyticsCollectionEnabled:"true"]
             signingConfig signingConfigs.release
-            minifyEnabled false
-            shrinkResources false
-//            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
     // applicationVariants are e.g. debug, release
