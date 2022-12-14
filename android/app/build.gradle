@@ -78,8 +78,9 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    entryFile: "index.js",
-    enableHermes: false,  // clean and rebuild if changing
+        bundleInDebug: true, // add this line
+        entryFile    : "index.js",
+        enableHermes : false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -142,8 +143,8 @@ android {
         applicationId "com.ziggeo.reactnativesdk.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 7
-        versionName "1.0.6"
+        versionCode 8
+        versionName "1.0.7"
         multiDexEnabled true
         setProperty("archivesBaseName", "androidRN")
     }
@@ -177,9 +178,10 @@ android {
         release {
             manifestPlaceholders = [crashlyticsCollectionEnabled:"true"]
             signingConfig signingConfigs.release
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            //todo
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
     // applicationVariants are e.g. debug, release
