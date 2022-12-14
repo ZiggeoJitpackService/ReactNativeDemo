@@ -99,8 +99,8 @@ jobs:
       - name: Build and test
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: ${{ matrix.api-level }}
-          target: ${{ matrix.target }}
+          api-level: 23
+          target: default
           profile: Nexus 4
           script: "react-native start  react-native run-android --variant=release"
 #      - name: Build Android Release
