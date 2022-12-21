@@ -73,6 +73,29 @@ import {
     saveTintColor,
 } from '../../utils/storage';
 import {textFontStyle} from '../../ui/textFontStyle';
+import {SelectList} from 'react-native-dropdown-select-list'
+
+const cameraData = [
+    {key: '0', value: 'Camera1'},
+    {key: '1', value: 'Camera2'},
+]
+
+const qualityData = [
+    {key: '0', value: 'QUALITY_HIGH'},
+    {key: '1', value: 'QUALITY_MEDIUM'},
+    {key: '2', value: 'QUALITY_LOW'},
+]
+
+const controllersStyleData = [
+    {key: '0', value: 'DEFAULT'},
+    {key: '1', value: 'MODERN'},
+    {key: '2', value: 'CUBE'},
+    {key: '3', value: 'SPACE'},
+    {key: '4', value: 'MINIMALIST'},
+    {key: '5', value: 'ELEVATE'},
+    {key: '6', value: 'THEATRE'},
+
+]
 
 export class CommonSettings extends React.Component {
     constructor(props) {
@@ -105,14 +128,13 @@ export class CommonSettings extends React.Component {
             mesText: '',
             posBtnText: '',
             negBtnText: '',
-
-            //  const [hidePlayerControls, setHidePlayerControls] = useState(null);
-            //   const [controllerStyle, setControllerStyle] = useState(null);
-            //   const [textColor, setTextColor] = useState(null);
-            //   const [unplayedColor, setUnplayedColor] = useState(null);
-            //   const [playedColor, setPlayedColor] = useState(null);
-            //   const [bufferedColor, setBufferedColor] = useState(null);
-            //   const [tintColor, setTintColor] = useState(null);
+            hidePlayerControls: '',
+            controllerStyle: '0',
+            textColor: '',
+            unplayedColor: '',
+            playedColor: '',
+            bufferedColor: '',
+            tintColor: '',
         };
     }
 
@@ -147,14 +169,13 @@ export class CommonSettings extends React.Component {
         let mesText = await getMesText();
         let posBtnText = await getPosBtnText();
         let negBtnText = await getNegBtnText();
-
-        //  const [hidePlayerControls, setHidePlayerControls] = useState(null);
-        //   const [controllerStyle, setControllerStyle] = useState(null);
-        //   const [textColor, setTextColor] = useState(null);
-        //   const [unplayedColor, setUnplayedColor] = useState(null);
-        //   const [playedColor, setPlayedColor] = useState(null);
-        //   const [bufferedColor, setBufferedColor] = useState(null);
-        //   const [tintColor, setTintColor] = useState(null);
+        let hidePlayerControls = await getHidePlayerControls();
+        let controllerStyle = await getControllerStyle();
+        let textColor = await getTextColor();
+        let unplayedColor = await getUnplayedColor();
+        let playedColor = await getPlayedColor();
+        let bufferedColor = await getBufferedColor();
+        let tintColor = await getTintColor();
 
         if (isCustomCamera !== null) {
             this.setState({isCustomCamera});
@@ -238,13 +259,27 @@ export class CommonSettings extends React.Component {
             this.setState({negBtnText});
         }
 
-        //  const [hidePlayerControls, setHidePlayerControls] = useState(null);
-        //   const [controllerStyle, setControllerStyle] = useState(null);
-        //   const [textColor, setTextColor] = useState(null);
-        //   const [unplayedColor, setUnplayedColor] = useState(null);
-        //   const [playedColor, setPlayedColor] = useState(null);
-        //   const [bufferedColor, setBufferedColor] = useState(null);
-        //   const [tintColor, setTintColor] = useState(null);
+        if (hidePlayerControls != null) {
+            this.setState({hidePlayerControls});
+        }
+        if (controllerStyle != null) {
+            this.setState({controllerStyle});
+        }
+        if (textColor != null) {
+            this.setState({textColor});
+        }
+        if (unplayedColor != null) {
+            this.setState({unplayedColor});
+        }
+        if (playedColor != null) {
+            this.setState({playedColor});
+        }
+        if (bufferedColor != null) {
+            this.setState({bufferedColor});
+        }
+        if (tintColor != null) {
+            this.setState({tintColor});
+        }
     };
 
     render() {
@@ -460,24 +495,18 @@ export class CommonSettings extends React.Component {
                             }}
                         />
                     </View>
-                    <View style={styles.controls}>
-                        {createTextField({
-                                label: Strings.camera,
-                                textColor: Theme.colors.accent,
-                                value: this.state.camera,
-                                onChangeText: this.onCameraChange
-                            }
-                        )}
-                    </View>
-                    <View style={styles.controls}>
-                        {createTextField({
-                                label: Strings.quality,
-                                textColor: Theme.colors.accent,
-                                value: this.state.quality,
-                                onChangeText: this.onQualityChange
-                            }
-                        )}
-                    </View>
+                    <SelectList
+                        setSelected={(val) => this.setState({camera: val})}
+                        data={cameraData}
+                        save="key"
+                        placeholder={Strings.camera}
+                    />
+                    <SelectList
+                        placeholder={Strings.quality}
+                        setSelected={(val) => this.setState({quality: val})}
+                        data={qualityData}
+                        save="key"
+                    />
                     <View style={styles.textContainer}>
                         <Text
                             style={[
@@ -577,15 +606,12 @@ export class CommonSettings extends React.Component {
                             }
                         )}
                     </View>
-                    <View style={styles.controls}>
-                        {createTextField({
-                                label: Strings.controllerStyle,
-                                textColor: Theme.colors.accent,
-                                value: this.state.controllerStyle,
-                                onChangeText: this.onControllerStyleChange
-                            }
-                        )}
-                    </View>
+                    <SelectList
+                        placeholder={Strings.controllerStyle}
+                        setSelected={(val) => this.setState({controllerStyle: val})}
+                        data={controllersStyleData}
+                        save="key"
+                    />
                     <View style={styles.controls}>
                         {createTextField({
                                 label: Strings.textColor,
@@ -845,7 +871,7 @@ export class CommonSettings extends React.Component {
             saveHidePlayerControls(this.state.hidePlayerControls);
         }
         if (this.state.controllerStyle != null && this.state.controllerStyle != '') {
-            saveControllerStyle(this.state.controllerStyle);
+            saveControllerStyle(parseFloat(this.state.controllerStyle));
         }
         if (this.state.textColor != null && this.state.textColor != '') {
             saveTextColor(this.state.textColor);
