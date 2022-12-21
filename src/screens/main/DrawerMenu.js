@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, TouchableOpacity, View} from 'react-native';
 import Strings from '../../Strings';
 import {Recordings} from '../recordings/Recordings';
-import {Settings} from '../Settings';
+import {CommonSettings} from '../settings/CommonSettings';
 import {VideoEditor} from '../VideoEditor';
 import {ContactUs} from '../ContactUs';
 import {About} from '../About';
@@ -34,7 +34,7 @@ class DrawerMenu extends React.Component {
       {
         type: 'item',
         title: Strings.itemSettings,
-        name: Settings.name,
+        name: CommonSettings.name,
       },
       {
         type: 'divider',

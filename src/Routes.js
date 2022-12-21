@@ -7,7 +7,8 @@ import RecordingDetails from './screens/recordingDetails/RecordingDetails';
 
 import {Drawer} from './screens/main/Main';
 import Routes from './Routes';
-import {Settings} from './screens/Settings';
+import {Settings} from './screens/settings/Settings';
+import {CommonSettings} from './screens/settings/CommonSettings';
 import {CustomRecorder} from './screens/CustomRecorder';
 import {CustomVideoPlayer} from './screens/CustomVideoPlayer';
 
@@ -24,6 +25,7 @@ export default {
   RecordingDetails: 'RecordingDetails',
 
   Settings: 'Settings',
+  CommonSettings: 'CommonSettings',
   CustomVideo: 'CustomVideo',
   CustomCamera: 'CustomCamera',
 };

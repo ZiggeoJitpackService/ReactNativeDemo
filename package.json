@@ -51,6 +51,7 @@
     "react-navigation-props-mapper": "^0.3.0",
     "react-navigation-stack": "latest",
     "react-navigation-tabs": "^2.8.2",
+    "@react-navigation/bottom-tabs": "^6.5.2",
     "react-redux": "^5.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
