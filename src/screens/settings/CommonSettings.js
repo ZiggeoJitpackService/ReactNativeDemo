@@ -101,6 +101,29 @@ export class CommonSettings extends React.Component {
     constructor(props) {
         super(props);
         this.onBtnSaveSettingsPressed = this.onBtnSaveSettingsPressed.bind(this);
+        this.onHidePlayerControlsChange = this.onHidePlayerControlsChange.bind(this);
+        this.onControllerStyleChange = this.onControllerStyleChange.bind(this);
+        this.onUnplayedColorChange = this.onUnplayedColorChange.bind(this);
+        this.onPlayedColorChange = this.onPlayedColorChange.bind(this);
+        this.onBufferedColorChange = this.onBufferedColorChange.bind(this);
+        this.onTitleTextChange = this.onTitleTextChange.bind(this);
+        this.onMesTextChange = this.onMesTextChange.bind(this);
+        this.onPosBtnTextChange = this.onPosBtnTextChange.bind(this);
+        this.onNegBtnTextChange = this.onNegBtnTextChange.bind(this);
+        this.onVideoWidthChange = this.onVideoWidthChange.bind(this);
+        this.onVideoBitrateChange = this.onVideoBitrateChange.bind(this);
+        this.onAudioSampleRateChange = this.onAudioSampleRateChange.bind(this);
+        this.onAudioBitrateChange = this.onAudioBitrateChange.bind(this);
+        this.onVideoHeightChange = this.onVideoHeightChange.bind(this);
+        this.onMaxRecordingDurationChange = this.onMaxRecordingDurationChange.bind(this);
+        this.onStartDelayChange = this.onStartDelayChange.bind(this);
+        this.onQualityChange = this.onQualityChange.bind(this);
+        this.onCameraChange = this.onCameraChange.bind(this);
+        this.onSyncIntervalTextChange = this.onSyncIntervalTextChange.bind(this);
+        this.onAutostartRecordingTextChange = this.onAutostartRecordingTextChange.bind(this);
+        this.onLostConnTextChange = this.onLostConnTextChange.bind(this);
+        this.onQualityChange = this.onQualityChange.bind(this);
+
         this.state = {
             isCustomCamera: false,
             isCustomVideo: false,
@@ -874,19 +897,19 @@ export class CommonSettings extends React.Component {
             saveControllerStyle(parseFloat(this.state.controllerStyle));
         }
         if (this.state.textColor != null && this.state.textColor != '') {
-            saveTextColor(this.state.textColor);
+            saveTextColor(parseFloat(this.state.textColor));
         }
         if (this.state.unplayedColor != null && this.state.unplayedColor != '') {
-            saveUnplayedColor(this.state.unplayedColor);
+            saveUnplayedColor(parseFloat(this.state.unplayedColor));
         }
         if (this.state.playedColor != null && this.state.playedColor != '') {
-            savePlayedColor(this.state.playedColor);
+            savePlayedColor(parseFloat(this.state.playedColor));
         }
         if (this.state.bufferedColor != null && this.state.bufferedColor != '') {
-            saveBufferedColor(this.state.bufferedColor);
+            saveBufferedColor(parseFloat(this.state.bufferedColor));
         }
         if (this.state.tintColor != null && this.state.tintColor != '') {
-            saveTintColor(this.state.tintColor);
+            saveTintColor(parseFloat(this.state.tintColor));
         }
     }
 }
