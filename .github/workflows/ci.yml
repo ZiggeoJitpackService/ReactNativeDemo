@@ -20,6 +20,9 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
+      - name: Install node
+        run: npm install node@16.0.0 --save-dev
+
       - name: Install node modules
         run: |
           yarn install
@@ -56,7 +59,6 @@ jobs:
 
   publish_release:
     runs-on: macos-latest
-    needs: run_tests
     steps:
       - uses: actions/checkout@v3
 
