@@ -246,7 +246,7 @@ export class Recordings extends React.Component {
                                 {item.token}
                             </Text>
                         )}
-                        {item.tags && <Text>{item.tags}</Text>}
+                        {/*{item.tags && <Text>{"item.tags"}</Text>}*/}
                     </View>
                     <View
                         style={{

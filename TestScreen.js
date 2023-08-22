@@ -201,7 +201,7 @@ export default function TestScreen() {
       use_wifi_only: true,
       sync_interval: 6,
       turn_off_uploader: true,
-      lost_connection_action: 552,
+      lost_connection_action: Ziggeo.UPLOADING_ERROR_ACTION_ERROR_NOTIFICATION,
     });
     Ziggeo.getUploadingConfig().then(dataMap => {
       Object.keys(dataMap).map(key => {
