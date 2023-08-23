@@ -20,6 +20,10 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: Install node modules
         run: |
           yarn install
@@ -69,6 +73,10 @@ jobs:
 
       - name: clean
         run: yarn cache clean
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Install node modules
         run: |
