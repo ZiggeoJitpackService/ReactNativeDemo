@@ -46,9 +46,6 @@ jobs:
       - name: Install cavy
         run: yarn global add cavy-cli
 
-      - name: NODE_OPTIONS
-        run: NODE_OPTIONS=--openssl-legacy-provider yarn start
-
       - name: Build and test
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -76,9 +73,6 @@ jobs:
       - name: Install node modules
         run: |
           yarn install
-
-      - name: NODE_OPTIONS
-        run: NODE_OPTIONS=--openssl-legacy-provider yarn start
 
       - name: Create google services file
         run: cat /Users/runner/work/ReactNativeDemo/ReactNativeDemo/android/app/google-services.json | base64
