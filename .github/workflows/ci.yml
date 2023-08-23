@@ -20,9 +20,6 @@ jobs:
           java-version: '11'
           cache: 'gradle'
 
-      - name: Install node
-        run: npm install node@16.0.0 --save-dev
-
       - name: Install node modules
         run: |
           yarn install
@@ -48,6 +45,9 @@ jobs:
 
       - name: Install cavy
         run: yarn global add cavy-cli
+
+      - name: NODE_OPTIONS
+        run: NODE_OPTIONS=--openssl-legacy-provider yarn start
 
       - name: Build and test
         uses: reactivecircus/android-emulator-runner@v2
@@ -76,6 +76,9 @@ jobs:
       - name: Install node modules
         run: |
           yarn install
+
+      - name: NODE_OPTIONS
+        run: NODE_OPTIONS=--openssl-legacy-provider yarn start
 
       - name: Create google services file
         run: cat /Users/runner/work/ReactNativeDemo/ReactNativeDemo/android/app/google-services.json | base64
