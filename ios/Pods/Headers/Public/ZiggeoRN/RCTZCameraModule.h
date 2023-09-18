@@ -1,1 +1,1 @@
-../../../../../../ZigReactNativeSDK/ios/RCTZCameraModule.h
+../../../../../../ReactNativeSDK/ios/CameraView/RCTZCameraModule.h

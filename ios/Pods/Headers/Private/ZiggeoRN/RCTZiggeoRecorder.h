@@ -1,1 +1,1 @@
-../../../../../../ZigReactNativeSDK/ios/RCTZiggeoRecorder.h
+../../../../../../ReactNativeSDK/ios/Recorder/RCTZiggeoRecorder.h

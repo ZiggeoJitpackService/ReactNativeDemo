@@ -1,1 +1,1 @@
-../../../../../../ZigReactNativeSDK/ios/RCTZiggeoPlayer.h
+../../../../../../ReactNativeSDK/ios/Player/RCTZiggeoPlayer.h

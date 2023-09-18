@@ -1,1 +1,0 @@
-../../../../../../ZigReactNativeSDK/ios/RCTZiggeo.h
