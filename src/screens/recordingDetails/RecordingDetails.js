@@ -15,11 +15,11 @@ import {getCustomVideoMode} from '../../utils/storage';
 import Routes from '../../Routes';
 import connect from 'react-redux/lib/connect/connect';
 import {
-  cancelEditing,
-  deleteVideo,
-  editInfo,
-  loadInfo,
-  updateInfo,
+    cancelEditing,
+    deleteVideo,
+    editInfo,
+    loadInfo,
+    updateInfo,
 } from './actions';
 
 class RecordingDetails extends React.Component {
@@ -67,15 +67,18 @@ class RecordingDetails extends React.Component {
         });
     }
 
-    onPlayVideo(model) {
+    onPlayVideo = async (model) =>  {
         if (model.fileType === 'video') {
-            console.log(model.model.token);
-            const {navigation} = this.props;
-            navigation.navigate(Routes.CustomVideo, {
-                    videoToken: model.model.token,
-                    videoPath: null,
-                }
-            );
+            if (await getCustomVideoMode()) {
+                const {navigation} = this.props;
+                navigation.navigate(Routes.CustomVideo, {
+                        videoToken: model.model.token,
+                        videoPath: null,
+                    }
+                );
+            } else {
+                Ziggeo.playVideo(model.model.token);
+            }
         } else if (model.fileType === 'audio') {
             Ziggeo.startAudioPlayer(model.model.token);
         } else if (model.fileType === 'image') {
