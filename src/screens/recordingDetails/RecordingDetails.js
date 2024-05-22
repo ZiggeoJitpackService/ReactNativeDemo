@@ -67,6 +67,23 @@ class RecordingDetails extends React.Component {
         });
     }
 
+    onPlayVideo(model) {
+        if (model.fileType === 'video') {
+            console.log('AAAAACustomVideo');
+            console.log(model.model.token);
+            const {navigation} = this.props;
+            navigation.navigate(Routes.CustomVideo, {
+                    videoToken: model.model.token,
+                    videoPath: null,
+                }
+            );
+        } else if (model.fileType === 'audio') {
+            Ziggeo.startAudioPlayer(model.model.token);
+        } else if (model.fileType === 'image') {
+            Ziggeo.showImage(model.model.token);
+        }
+    }
+
     renderLoading() {
         return <Spinner visible={true}/>;
     }
@@ -128,28 +145,9 @@ class RecordingDetails extends React.Component {
                             <View>
                                 <TouchableOpacity
                                     style={{alignContent: 'center'}}
-                                    onPress={ async () =>
-                                        (model.fileType === 'video' &&
-                                            ((await getCustomVideoMode() &&
-                                                    (() => {
-                                                            const {navigation} = this.props;
-                                                            navigation.navigate(Routes.CustomVideo, {
-                                                                    videoToken: model.token,
-                                                                    videoPath: null,
-                                                                }
-                                                            );
-                                                        }
-                                                    )
-                                                    ||
-                                                    Ziggeo.playVideo(model.model.token)
-                                                )
-                                            )
-                                        ) ||
-                                            (model.fileType === 'audio' &&
-                                                Ziggeo.startAudioPlayer(model.model.token)) ||
-                                            (model.fileType === 'image' &&
-                                                Ziggeo.showImage(model.model.token))
-                                    }>
+                                    onPress={async () => {
+                                        this.onPlayVideo(model)
+                                    }}>
                                     {(imageUrl && (
                                         <Image
                                             style={styles.preview}
