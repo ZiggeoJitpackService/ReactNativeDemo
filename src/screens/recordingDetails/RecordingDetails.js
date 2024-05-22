@@ -69,7 +69,6 @@ class RecordingDetails extends React.Component {
 
     onPlayVideo(model) {
         if (model.fileType === 'video') {
-            console.log('AAAAACustomVideo');
             console.log(model.model.token);
             const {navigation} = this.props;
             navigation.navigate(Routes.CustomVideo, {
