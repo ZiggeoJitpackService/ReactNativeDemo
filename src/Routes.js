@@ -1,16 +1,17 @@
-import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Splash from './screens/Splash';
 import Auth from './screens/auth/Auth';
 import RecordingDetails from './screens/recordingDetails/RecordingDetails';
 
-import {Drawer} from './screens/main/Main';
+import { Drawer, MainDrawer } from './screens/main/Main';
 import Routes from './Routes';
-import {Settings} from './screens/settings/Settings';
-import {CommonSettings} from './screens/settings/CommonSettings';
-import {CustomRecorder} from './screens/CustomRecorder';
-import {CustomVideoPlayer} from './screens/CustomVideoPlayer';
+import { CommonSettings } from './screens/settings/CommonSettings';
+import { CustomRecorder } from './screens/CustomRecorder';
+import { CustomVideoPlayer } from './screens/CustomVideoPlayer';
+
+const Stack = createStackNavigator();
 
 export default {
   Splash: 'Splash',
@@ -24,27 +25,51 @@ export default {
   Recordings: 'Recordings',
   RecordingDetails: 'RecordingDetails',
 
-  Settings: 'Settings',
   CommonSettings: 'CommonSettings',
   CustomVideo: 'CustomVideo',
   CustomCamera: 'CustomCamera',
 };
 
-const AuthStack = createStackNavigator({
-  [Routes.Auth]: {screen: Auth},
-});
+function AuthStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen name={Routes.Auth} component={Auth} />
+    </Stack.Navigator>
+  )
+}
 
-const HomeStack = createStackNavigator({
-  [Routes.Drawer]: {screen: Drawer},
-  [Routes.RecordingDetails]: {screen: RecordingDetails},
-  [Routes.CustomVideo]: {screen: CustomVideoPlayer},
-  [Routes.CustomCamera]: {screen: CustomRecorder},
-});
+function HomeStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
 
-export const RootStack = createAppContainer(
-  createSwitchNavigator({
-    [Routes.Splash]: {screen: Splash},
-    [Routes.AuthStack]: {screen: AuthStack},
-    [Routes.HomeStack]: {screen: HomeStack},
-  }),
-);
+      <Stack.Screen name={Routes.Drawer} component={MainDrawer} />
+      <Stack.Screen name={Routes.RecordingDetails} component={RecordingDetails} />
+      <Stack.Screen name={Routes.CustomVideo} component={CustomVideoPlayer} />
+      <Stack.Screen name={Routes.CustomCamera} component={CustomRecorder} />
+    </Stack.Navigator>
+  )
+}
+
+
+export function RootStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen name={Routes.Splash} component={Splash} />
+      <Stack.Screen name={Routes.AuthStack} component={AuthStack} />
+      <Stack.Screen name={Routes.HomeStack} component={HomeStack} />
+    </Stack.Navigator>
+  )
+}
+

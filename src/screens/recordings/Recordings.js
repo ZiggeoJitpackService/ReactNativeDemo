@@ -1,21 +1,21 @@
-import {ScrollView, RefreshControl, TouchableOpacity, View} from 'react-native';
+import { ScrollView, RefreshControl, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Strings from '../../Strings';
 import CardView from 'react-native-cardview';
 import Ziggeo from 'react-native-ziggeo-library';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import styles from './styles';
-import {requestRecs} from './actions';
+import { requestRecs } from './actions';
 import Theme from '../../Theme';
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 import Routes from '../../Routes';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Text from '../../ui/Text';
 import createToolbar from '../../ui/Toolbar';
-import {addLog} from '../logs/storage';
-import {getCustomCameraMode} from '../../utils/storage';
+import { addLog } from '../logs/storage';
+import { getCustomCameraMode } from '../../utils/storage';
 
 export class Recordings extends React.Component {
     constructor(props) {
@@ -57,7 +57,7 @@ export class Recordings extends React.Component {
     async onCameraPressed() {
         let isCustomMode = await getCustomCameraMode();
         if (isCustomMode === 'true') {
-            const {navigation} = this.props;
+            const { navigation } = this.props;
             navigation.navigate(Routes.CustomCamera);
         } else {
             await Ziggeo.record();
@@ -112,12 +112,12 @@ export class Recordings extends React.Component {
     unsubscribeFromEvents() {
         for (let i = 0; i < this.state.subscriptions.length; i++) {
             let subs = this.state.subscriptions[i];
-            subs.remove();
+            subs && subs.remove();
         }
     }
 
     render() {
-        const {isLoading, recordings, audioRecordings, images, error} = this.props;
+        const { isLoading, recordings, audioRecordings, images, error } = this.props;
         return (
             <View style={styles.container}>
                 {createToolbar(Strings.titleRecordings, this.props)}
@@ -128,33 +128,33 @@ export class Recordings extends React.Component {
                     <ActionButton.Item
                         size={Theme.size.smallFabSize}
                         onPress={() => this.onFolderPressed()}>
-                        <Icon name="folder" style={styles.actionButtonIcon}/>
+                        <Icon name="folder" style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                     <ActionButton.Item
                         size={Theme.size.smallFabSize}
                         onPress={() => this.onImagePressed()}>
-                        <Icon name="image" style={styles.actionButtonIcon}/>
+                        <Icon name="image" style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                     <ActionButton.Item
                         size={Theme.size.smallFabSize}
                         onPress={() => {
                             this.onAudioPressed();
                         }}>
-                        <Icon name="microphone" style={styles.actionButtonIcon}/>
+                        <Icon name="microphone" style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                     <ActionButton.Item
                         size={Theme.size.smallFabSize}
                         onPress={() => {
                             this.onScreenPressed();
                         }}>
-                        <Icon name="monitor" style={styles.actionButtonIcon}/>
+                        <Icon name="monitor" style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                     <ActionButton.Item
                         size={Theme.size.smallFabSize}
                         onPress={() => {
                             this.onCameraPressed();
                         }}>
-                        <Icon name="video" style={styles.actionButtonIcon}/>
+                        <Icon name="video" style={styles.actionButtonIcon} />
                     </ActionButton.Item>
                 </ActionButton>
             </View>
@@ -162,7 +162,7 @@ export class Recordings extends React.Component {
     }
 
     renderLoading() {
-        return <Spinner visible={true}/>;
+        return <Spinner visible={true} />;
     }
 
     renderList(recordings, audioRecordings, images) {
@@ -214,7 +214,7 @@ export class Recordings extends React.Component {
             <TouchableOpacity
                 key={item.token}
                 onPress={() => {
-                    const {navigation} = this.props;
+                    const { navigation } = this.props;
                     navigation.navigate(Routes.RecordingDetails, {
                         model: item,
                         fileType: iconName
@@ -225,7 +225,7 @@ export class Recordings extends React.Component {
                     cardElevation={Theme.size.itemElevation}
                     cornerRadius={Theme.size.itemCornerRadius}>
                     <Icon name={((iconName === "audio") && "microphone") || ((iconName !== "audio") && iconName)}
-                          style={styles.listItemIcon}/>
+                          style={styles.listItemIcon} />
                     <View
                         style={{
                             height: Theme.size.listItemContentHeight,
@@ -235,14 +235,14 @@ export class Recordings extends React.Component {
                             <Text
                                 numberOfLines={1}
                                 ellipsizeMode="tail"
-                                style={{width: Theme.size.tokenLineWidth}}>
+                                style={{ width: Theme.size.tokenLineWidth }}>
                                 {item.key}
                             </Text>
                         ) : (
                             <Text
                                 numberOfLines={1}
                                 ellipsizeMode="tail"
-                                style={{width: Theme.size.tokenLineWidth}}>
+                                style={{ width: Theme.size.tokenLineWidth }}>
                                 {item.token}
                             </Text>
                         )}
@@ -266,7 +266,7 @@ export class Recordings extends React.Component {
 
 }
 
-const mapStateToProps = ({recs}) => recs;
+const mapStateToProps = ({ recs }) => recs;
 export default connect(
     mapStateToProps,
     {

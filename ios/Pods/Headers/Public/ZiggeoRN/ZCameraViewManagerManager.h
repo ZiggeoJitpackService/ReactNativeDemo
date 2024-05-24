@@ -1,1 +1,1 @@
-../../../../../../ReactNativeSDK/ios/CameraView/ZCameraViewManagerManager.h
+../../../../../node_modules/react-native-ziggeo-library/ios/CameraView/ZCameraViewManagerManager.h

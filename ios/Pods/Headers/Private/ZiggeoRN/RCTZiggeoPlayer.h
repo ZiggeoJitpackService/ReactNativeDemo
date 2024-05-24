@@ -1,1 +1,1 @@
-../../../../../../ReactNativeSDK/ios/Player/RCTZiggeoPlayer.h
+../../../../../node_modules/react-native-ziggeo-library/ios/Player/RCTZiggeoPlayer.h

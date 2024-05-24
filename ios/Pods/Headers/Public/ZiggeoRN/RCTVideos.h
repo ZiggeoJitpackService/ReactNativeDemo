@@ -1,1 +1,1 @@
-../../../../../../ReactNativeSDK/ios/Api/RCTVideos.h
+../../../../../node_modules/react-native-ziggeo-library/ios/Api/RCTVideos.h

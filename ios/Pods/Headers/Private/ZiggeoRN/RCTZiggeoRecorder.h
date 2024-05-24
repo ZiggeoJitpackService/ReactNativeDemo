@@ -1,1 +1,1 @@
-../../../../../../ReactNativeSDK/ios/Recorder/RCTZiggeoRecorder.h
+../../../../../node_modules/react-native-ziggeo-library/ios/Recorder/RCTZiggeoRecorder.h
